@@ -6,6 +6,13 @@
       "email": "admin@test.com",
       "password": "1234",
       "role": "admin"
+    },
+    {
+      "id": "a64a",
+      "name": "makni",
+      "email": "makni@gmail",
+      "password": "1234",
+      "role": "user"
     }
   ],
   "products": [],

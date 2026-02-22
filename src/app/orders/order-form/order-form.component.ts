@@ -18,9 +18,9 @@ export class OrderFormComponent implements OnInit {
   products: Product[] = [];
   isEditMode = false;
   isAdmin = false;
-  currentUserId: number | null = null;
+  currentUserId: string | null = null;
   orderId: string | null = null;
-  editOrderUserId: number | null = null;
+  editOrderUserId: string | null = null;
   errorMessage = '';
   isLoading = false;
 
@@ -37,21 +37,21 @@ export class OrderFormComponent implements OnInit {
     private readonly toastService: ToastService
   ) {
     this.orderForm = this.fb.group({
-      userId: [null as number | null, [Validators.required]],
-      productId: [null as number | null, [Validators.required]],
+      userId: [null as string | null, [Validators.required]],
+      productId: [null as string | null, [Validators.required]],
       quantity: [1, [Validators.required, Validators.min(1)]],
       status: ['pending', [Validators.required]]
     });
   }
 
-  asSelectValue(id: number | string | null | undefined): number | null {
-    return id === null || id === undefined ? null : Number(id);
+  asSelectValue(id: number | string | null | undefined): string | null {
+    return id === null || id === undefined ? null : String(id);
   }
 
   ngOnInit(): void {
     const currentUser = this.authService.getCurrentUser();
     this.isAdmin = currentUser?.role === 'admin';
-    this.currentUserId = currentUser?.id === undefined ? null : Number(currentUser.id);
+    this.currentUserId = currentUser?.id === undefined ? null : String(currentUser.id);
 
     const idParam = this.route.snapshot.paramMap.get('id');
     this.isEditMode = !!idParam;
@@ -76,7 +76,7 @@ export class OrderFormComponent implements OnInit {
         next: ({ users, products, order }) => {
           this.users = users;
           this.products = products;
-          this.editOrderUserId = Number(order.userId);
+          this.editOrderUserId = String(order.userId);
           this.orderForm.patchValue({
             userId: this.asSelectValue(order.userId),
             productId: this.asSelectValue(order.productId),
@@ -124,10 +124,10 @@ export class OrderFormComponent implements OnInit {
     }
 
     const value = this.orderForm.getRawValue();
-    const resolvedAdminUserId = Number(value.userId ?? this.editOrderUserId ?? 0);
+    const resolvedAdminUserId = String(value.userId ?? this.editOrderUserId ?? '');
     const payload = {
-      userId: this.isAdmin ? resolvedAdminUserId : Number(this.currentUserId ?? 0),
-      productId: Number(value.productId ?? 0),
+      userId: this.isAdmin ? resolvedAdminUserId : String(this.currentUserId ?? ''),
+      productId: String(value.productId ?? ''),
       quantity: Number(value.quantity ?? 1),
       status: this.isAdmin ? (value.status ?? 'pending') : 'pending'
     };

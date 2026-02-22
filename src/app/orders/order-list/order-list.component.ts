@@ -18,7 +18,7 @@ export class OrderListComponent implements OnInit {
   isLoading = false;
   errorMessage = '';
   isAdmin = false;
-  currentUserId: number | null = null;
+  currentUserId: string | null = null;
   displayedColumns: string[] = [];
   private usersById: Record<string, string> = {};
   private productsById: Record<string, string> = {};
@@ -35,7 +35,7 @@ export class OrderListComponent implements OnInit {
   ngOnInit(): void {
     const currentUser = this.authService.getCurrentUser();
     this.isAdmin = currentUser?.role === 'admin';
-    this.currentUserId = currentUser?.id === undefined ? null : Number(currentUser.id);
+    this.currentUserId = currentUser?.id === undefined ? null : String(currentUser.id);
     this.displayedColumns = this.isAdmin
       ? ['user', 'product', 'quantity', 'status', 'actions']
       : ['product', 'quantity', 'status'];

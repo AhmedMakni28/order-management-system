@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
   isLoading = false;
   errorMessage = '';
   isAdmin = false;
-  currentUserId: number | null = null;
+  currentUserId: string | null = null;
   private productsById: Record<string, string> = {};
 
   constructor(
@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     const currentUser = this.authService.getCurrentUser();
     this.isAdmin = currentUser?.role === 'admin';
-    this.currentUserId = currentUser?.id === undefined ? null : Number(currentUser.id);
+    this.currentUserId = currentUser?.id === undefined ? null : String(currentUser.id);
     this.loadProductsAndOrders();
   }
 
