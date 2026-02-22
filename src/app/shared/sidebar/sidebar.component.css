@@ -1,0 +1,127 @@
+.sidebar {
+  background: linear-gradient(180deg, #f7f9ff 0%, #eef3ff 100%);
+  border-right: 1px solid #dbe3f7;
+  padding: 14px 10px;
+  overflow-y: auto;
+  transition: width 0.3s ease, box-shadow 0.25s ease;
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.6);
+}
+
+.sidebar.expanded {
+  width: 250px;
+}
+
+.sidebar.collapsed {
+  width: 64px;
+}
+
+.toggle-btn {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #2f57c5 0%, #2a46a0 100%);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  transition: transform 0.16s ease, box-shadow 0.2s ease;
+}
+
+.toggle-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(42, 70, 160, 0.28);
+}
+
+.expanded-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.user-card {
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #dfe7fa;
+}
+
+.user-label {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+  letter-spacing: 0.6px;
+}
+
+.user-name {
+  margin: 6px 0 0;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.user-email {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.section-title {
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-list button {
+  text-align: left;
+  border: 1px solid #d9e3fb;
+  background: #fff;
+  border-radius: 10px;
+  padding: 9px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1f2a44;
+  transition: transform 0.16s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.nav-list button:hover {
+  transform: translateY(-1px);
+  border-color: #bfcdf4;
+  box-shadow: 0 6px 16px rgba(37, 68, 148, 0.12);
+}
+
+.collapsed-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.collapsed-nav button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d9e3fb;
+  background: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: #2a3f86;
+  transition: transform 0.16s ease, box-shadow 0.18s ease;
+}
+
+.collapsed-nav button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(42, 70, 160, 0.14);
+}

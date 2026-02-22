@@ -1,0 +1,318 @@
+:host {
+  display: block;
+}
+
+.section-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header-title h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+}
+
+.header-title .subtitle {
+  margin: 4px 0 0 0;
+  color: #999;
+  font-size: 14px;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Loading State */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 16px;
+  color: #667eea;
+}
+
+.loading-container p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Error State */
+.error-card {
+  margin-bottom: 24px;
+  background-color: #ffebee;
+  border-left: 4px solid #d32f2f;
+}
+
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #d32f2f;
+  font-size: 14px;
+}
+
+.error-banner mat-icon {
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+/* Table Container */
+.table-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-table thead {
+  background-color: #f5f5f5;
+}
+
+.custom-table th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.custom-table td {
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+}
+
+.custom-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Cell Content */
+.cell-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  font-weight: 500;
+}
+
+.cell-user .user-icon {
+  color: #667eea;
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+
+.cell-product {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  font-weight: 500;
+}
+
+.cell-product .product-icon {
+  color: #667eea;
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+
+/* Quantity Chip */
+.quantity-chip {
+  background-color: #2196f3 !important;
+  color: white !important;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.quantity-chip mat-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+}
+
+/* Status Chips */
+.status-chip {
+  font-weight: 500;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+}
+
+.status-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+}
+
+.status-pending {
+  background-color: #ffa500 !important;
+}
+
+.status-processing {
+  background-color: #2196f3 !important;
+}
+
+.status-shipped {
+  background-color: #4caf50 !important;
+}
+
+.status-cancelled {
+  background-color: #d32f2f !important;
+}
+
+/* Actions */
+.action-btn {
+  color: #667eea;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background-color: rgba(102, 126, 234, 0.08);
+}
+
+.action-btn.delete-btn {
+  color: #d32f2f;
+}
+
+.action-btn.delete-btn:hover {
+  background-color: rgba(211, 47, 47, 0.08);
+}
+
+.action-btn.update-btn {
+  color: #ff9800;
+}
+
+.action-btn.update-btn:hover {
+  background-color: rgba(255, 152, 0, 0.08);
+}
+
+/* Material Icon Button Override */
+::ng-deep .mat-mdc-icon-button.mat-mdc-button-base {
+  width: 40px;
+  height: 40px;
+}
+
+/* Empty State */
+.empty-state-card {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  border: 2px dashed #ccc;
+  box-shadow: none;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 16px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 64px;
+  height: 64px;
+  width: 64px;
+  color: #ccc;
+}
+
+.empty-state h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #666;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #999;
+  font-size: 14px;
+}
+
+.empty-state button {
+  margin-top: 16px;
+  min-width: 200px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-container {
+    padding: 16px;
+  }
+
+  .list-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .add-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .custom-table th {
+    font-size: 11px;
+    padding: 12px 8px;
+  }
+
+  .custom-table td {
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+
+  .cell-user,
+  .cell-product {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-title h2 {
+    font-size: 20px;
+  }
+
+  .empty-state {
+    padding: 40px 20px;
+  }
+
+  .empty-icon {
+    font-size: 48px;
+    height: 48px;
+    width: 48px;
+  }
+}

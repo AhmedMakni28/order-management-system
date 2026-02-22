@@ -1,0 +1,90 @@
+<div class="form-container">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="card-icon">{{ isEditMode ? 'edit' : 'add_circle' }}</mat-icon>
+        {{ isEditMode ? 'Modifier une commande' : 'Créer une commande' }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="isLoading" class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Chargement...</p>
+      </div>
+
+      <form *ngIf="!isLoading" [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
+        <!-- User Field (Admin Only) -->
+        <mat-form-field appearance="fill" class="full-width" *ngIf="isAdmin">
+          <mat-label>Utilisateur</mat-label>
+          <mat-select formControlName="userId">
+            <mat-option>-- Choisir un utilisateur --</mat-option>
+            <mat-option *ngFor="let user of users" [value]="asSelectValue(user.id)">{{ user.name }}</mat-option>
+          </mat-select>
+          <mat-icon matPrefix>person</mat-icon>
+          <mat-error *ngIf="orderForm.get('userId')?.hasError('required')">
+            L'utilisateur est obligatoire
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Product Field -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Produit</mat-label>
+          <mat-select formControlName="productId">
+            <mat-option>-- Choisir un produit --</mat-option>
+            <mat-option *ngFor="let product of products" [value]="asSelectValue(product.id)">
+              {{ product.name }} (${{ product.price }})
+            </mat-option>
+          </mat-select>
+          <mat-icon matPrefix>shopping_bag</mat-icon>
+          <mat-error *ngIf="orderForm.get('productId')?.hasError('required')">
+            Le produit est obligatoire
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Quantity Field -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Quantité</mat-label>
+          <input matInput type="number" formControlName="quantity" placeholder="1" />
+          <mat-icon matPrefix>123</mat-icon>
+          <mat-error *ngIf="orderForm.get('quantity')?.hasError('required')">
+            La quantité est obligatoire
+          </mat-error>
+          <mat-error *ngIf="orderForm.get('quantity')?.hasError('min')">
+            La quantité doit être supérieure à 0
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Status Field (Admin Only) -->
+        <mat-form-field appearance="fill" class="full-width" *ngIf="isAdmin">
+          <mat-label>Statut</mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="pending">⏳ En attente</mat-option>
+            <mat-option value="processing">⚙️ En traitement</mat-option>
+            <mat-option value="shipped">📦 Expédié</mat-option>
+            <mat-option value="cancelled">❌ Annulé</mat-option>
+          </mat-select>
+          <mat-icon matPrefix>local_shipping</mat-icon>
+        </mat-form-field>
+
+        <!-- Error Message -->
+        <mat-error *ngIf="errorMessage" class="error-banner">
+          <mat-icon>error</mat-icon>
+          {{ errorMessage }}
+        </mat-error>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit">
+            <mat-icon>{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+            {{ isEditMode ? 'Mettre à jour' : 'Créer' }}
+          </button>
+          <button mat-stroked-button type="button" routerLink="/orders">
+            <mat-icon>close</mat-icon>
+            Annuler
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

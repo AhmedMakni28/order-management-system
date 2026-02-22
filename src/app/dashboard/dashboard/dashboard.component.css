@@ -1,0 +1,143 @@
+.dashboard {
+  padding: 24px;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.dashboard h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 6px 0 0 0;
+  color: var(--app-muted);
+  font-size: 14px;
+}
+
+.error-card {
+  background-color: #ffebee;
+  border-left: 4px solid #d32f2f;
+  margin-bottom: 16px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.summary-card {
+  padding: 16px;
+}
+
+.summary-title {
+  color: var(--app-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.summary-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 8px 0 4px 0;
+  color: var(--app-text);
+}
+
+.summary-muted {
+  color: var(--app-muted);
+  font-size: 13px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+.panel mat-card-content {
+  padding-top: 8px;
+}
+
+.status-row {
+  margin-bottom: 14px;
+}
+
+.status-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: var(--app-text);
+}
+
+.status-name {
+  font-weight: 600;
+}
+
+.status-count {
+  color: var(--app-muted);
+}
+
+.status-bar {
+  background-color: #eef2ff;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.status-fill {
+  height: 100%;
+  background-color: var(--app-primary);
+}
+
+.top-products {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.top-products li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  background-color: #fafafa;
+  font-size: 13px;
+}
+
+.product-name {
+  font-weight: 600;
+}
+
+.product-qty {
+  background-color: #e8eaf6;
+  color: #3f51b5;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

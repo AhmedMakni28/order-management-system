@@ -1,0 +1,72 @@
+<section style="max-width: 600px;">
+  <h2>Order Details</h2>
+
+  <p *ngIf="isLoading">Loading...</p>
+  <p *ngIf="errorMessage" style="color: #d32f2f; background-color: #ffebee; padding: 12px; border-radius: 4px;">{{ errorMessage }}</p>
+
+  <div *ngIf="!isLoading && order" style="background: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+
+    <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+      <h3 style="margin: 0 0 16px 0; color: #333;">Order #{{ order.id }}</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div>
+          <p style="margin: 0; font-size: 12px; color: #666; text-transform: uppercase;"><strong>STATUS</strong></p>
+          <p style="margin: 8px 0 0 0; font-size: 16px; color: #1976d2;">{{ order.status }}</p>
+        </div>
+        <div>
+          <p style="margin: 0; font-size: 12px; color: #666; text-transform: uppercase;"><strong>QUANTITY</strong></p>
+          <p style="margin: 8px 0 0 0; font-size: 16px;">{{ order.quantity }} units</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Information -->
+    <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+      <p style="margin: 0 0 8px 0; font-size: 12px; color: #666; text-transform: uppercase;"><strong>Customer</strong></p>
+      <div *ngIf="user" style="background: #f5f5f5; padding: 12px; border-radius: 4px;">
+        <p style="margin: 4px 0;"><strong>{{ user.name }}</strong></p>
+        <p style="margin: 4px 0; font-size: 14px; color: #666;">📧 {{ user.email }}</p>
+        <p style="margin: 4px 0; font-size: 14px; color: #666;">👤 Role: {{ user.role }}</p>
+      </div>
+    </div>
+
+    <!-- Product Information -->
+    <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+      <p style="margin: 0 0 8px 0; font-size: 12px; color: #666; text-transform: uppercase;"><strong>Product</strong></p>
+      <div *ngIf="product" style="background: #f5f5f5; padding: 12px; border-radius: 4px;">
+        <p style="margin: 4px 0;"><strong>{{ product.name }}</strong></p>
+        <p style="margin: 4px 0; font-size: 14px; color: #666;">{{ product.description }}</p>
+        <p style="margin: 8px 0 0 0; font-size: 16px; font-weight: bold; color: #2e7d32;">💰 ${{ product.price }}</p>
+      </div>
+    </div>
+
+    <!-- Total Amount -->
+    <div style="background: #e8f5e9; padding: 16px; border-radius: 4px; margin-bottom: 20px;">
+      <p style="margin: 0; font-size: 12px; color: #666; text-transform: uppercase;"><strong>Total Amount</strong></p>
+      <p style="margin: 8px 0 0 0; font-size: 24px; font-weight: bold; color: #2e7d32;">
+        ${{ (product?.price ?? 0) * order.quantity | number: '1.2-2' }}
+      </p>
+    </div>
+
+    <!-- Actions -->
+    <div style="display: flex; gap: 12px;">
+      <button (click)="goBack()"
+              style="flex: 1; padding: 12px; background-color: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        ← Back to Orders
+      </button>
+      <button *ngIf="isAdmin" (click)="editOrder()"
+              style="flex: 1; padding: 12px; background-color: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        ✏️ Edit Order
+      </button>
+    </div>
+
+  </div>
+
+  <div *ngIf="!isLoading && !order" style="text-align: center; padding: 40px;">
+    <p style="color: #666;">No order found.</p>
+    <button (click)="goBack()"
+            style="margin-top: 16px; padding: 12px 24px; background-color: #757575; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      Back to Orders
+    </button>
+  </div>
+</section>

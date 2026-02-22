@@ -1,0 +1,53 @@
+.detail-container {
+  max-width: 720px;
+}
+
+.detail-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.description-row {
+  display: block;
+}
+
+.description-row p {
+  margin: 8px 0 0;
+}
+
+.label {
+  font-weight: 600;
+  color: #555;
+}
+
+.error-banner {
+  color: #b00020;
+  background: #fdecef;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.empty-state {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+button {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #1976d2;
+  color: #fff;
+  cursor: pointer;
+}

@@ -1,0 +1,31 @@
+<div class="not-found-container">
+  <div class="not-found-content">
+    <div class="error-code">404</div>
+    <h1>Page non trouvée</h1>
+    <p class="error-message">
+      Désolé, la page que vous cherchez n'existe pas ou a été déplacée.
+    </p>
+
+    <div class="suggested-links">
+      <p class="suggestion-title">Pages suggérées:</p>
+      <ul class="suggestion-list">
+        <li><a href="#" (click)="router.navigate(['/dashboard']); $event.preventDefault()">📊 Tableau de bord</a></li>
+        <li><a href="#" (click)="router.navigate(['/products']); $event.preventDefault()">📦 Produits</a></li>
+        <li><a href="#" (click)="router.navigate(['/orders']); $event.preventDefault()">🛒 Commandes</a></li>
+        <li><a href="#" (click)="router.navigate(['/users']); $event.preventDefault()">👥 Utilisateurs</a></li>
+      </ul>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn-primary" (click)="goHome()">Retour à l'accueil</button>
+      <button class="btn-secondary" (click)="goBack()">Retour</button>
+    </div>
+  </div>
+
+  <div class="illustration">
+    <div class="circle-1"></div>
+    <div class="circle-2"></div>
+    <div class="circle-3"></div>
+  </div>
+</div>
+

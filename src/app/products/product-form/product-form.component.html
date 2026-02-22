@@ -1,0 +1,70 @@
+<div class="form-container">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="card-icon">{{ isEditMode ? 'edit' : 'add_circle' }}</mat-icon>
+        {{ isEditMode ? 'Modifier un produit' : 'Ajouter un produit' }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="isLoading" class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Chargement...</p>
+      </div>
+
+      <form *ngIf="!isLoading" [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+        <!-- Name Field -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Nom du produit</mat-label>
+          <input matInput formControlName="name" placeholder="Ex: Laptop" />
+          <mat-icon matPrefix>label</mat-icon>
+          <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+            Le nom est obligatoire
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Price Field -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Prix ($)</mat-label>
+          <input matInput type="number" formControlName="price" placeholder="0.00" />
+          <mat-icon matPrefix>attach_money</mat-icon>
+          <mat-error *ngIf="productForm.get('price')?.hasError('required')">
+            Le prix est obligatoire
+          </mat-error>
+          <mat-error *ngIf="productForm.get('price')?.hasError('min')">
+            Le prix doit être supérieur à 0
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Description Field -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="4" placeholder="Décrivez le produit..."></textarea>
+          <mat-icon matPrefix>description</mat-icon>
+          <mat-error *ngIf="productForm.get('description')?.hasError('required')">
+            La description est obligatoire
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Error Message -->
+        <mat-error *ngIf="errorMessage" class="error-banner">
+          <mat-icon>error</mat-icon>
+          {{ errorMessage }}
+        </mat-error>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit">
+            <mat-icon>{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+            {{ isEditMode ? 'Mettre à jour' : 'Créer' }}
+          </button>
+          <button mat-stroked-button type="button" routerLink="/products">
+            <mat-icon>close</mat-icon>
+            Annuler
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

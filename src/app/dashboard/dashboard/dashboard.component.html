@@ -1,0 +1,65 @@
+<section class="dashboard">
+  <div class="dashboard-header">
+    <div>
+      <h2>Dashboard</h2>
+      <p class="subtitle">Vue rapide des indicateurs principaux</p>
+    </div>
+  </div>
+
+  <mat-card *ngIf="errorMessage" class="error-card">
+    <mat-card-content>{{ errorMessage }}</mat-card-content>
+  </mat-card>
+
+  <div class="summary-grid">
+    <mat-card class="summary-card">
+      <div class="summary-title">Total Users</div>
+      <div class="summary-value">{{ totalUsers }}</div>
+      <div class="summary-muted">Utilisateurs actifs</div>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <div class="summary-title">Total Products</div>
+      <div class="summary-value">{{ totalProducts }}</div>
+      <div class="summary-muted">Produits en stock</div>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <div class="summary-title">Total Orders</div>
+      <div class="summary-value">{{ totalOrders }}</div>
+      <div class="summary-muted">Commandes en cours</div>
+    </mat-card>
+  </div>
+
+  <div class="dashboard-grid">
+    <mat-card class="panel">
+      <mat-card-header>
+        <mat-card-title>Commandes par statut</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let stat of ordersByStatus" class="status-row">
+          <div class="status-label">
+            <span class="status-name">{{ stat.status }}</span>
+            <span class="status-count">{{ stat.count }}</span>
+          </div>
+          <div class="status-bar">
+            <div class="status-fill" [style.width.%]="stat.percent"></div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="panel">
+      <mat-card-header>
+        <mat-card-title>Produits les plus commandes</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul class="top-products">
+          <li *ngFor="let product of topProducts">
+            <span class="product-name">{{ product.productName }}</span>
+            <span class="product-qty">{{ product.totalQuantity }}</span>
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>

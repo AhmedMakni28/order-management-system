@@ -1,0 +1,34 @@
+<section class="auth-page">
+  <mat-card class="auth-card">
+    <mat-card-header>
+      <mat-card-title>Connexion</mat-card-title>
+      <mat-card-subtitle>Acces simple et securise</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput id="email" type="email" formControlName="email" />
+          <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+            Email valide obligatoire.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput id="password" type="password" formControlName="password" />
+          <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+            Mot de passe obligatoire.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-error *ngIf="errorMessage" class="form-error">{{ errorMessage }}</mat-error>
+
+        <button mat-raised-button color="primary" type="submit" class="full-width">
+          Se connecter
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

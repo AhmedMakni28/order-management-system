@@ -1,0 +1,138 @@
+<div class="section-container">
+  <!-- Header Section -->
+  <div class="list-header">
+    <div class="header-title">
+      <h2>{{ isAdmin ? 'Commandes' : 'Mes commandes' }}</h2>
+      <p class="subtitle">{{ isAdmin ? 'Gérer toutes les commandes' : 'Mes commandements' }}</p>
+    </div>
+    <button mat-raised-button color="primary" routerLink="/orders/new" class="add-btn">
+      <mat-icon>add_shopping_cart</mat-icon>
+      Nouvelle commande
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Chargement des commandes...</p>
+  </div>
+
+  <!-- Error State -->
+  <mat-card *ngIf="!isLoading && errorMessage" class="error-card">
+    <mat-card-content>
+      <div class="error-banner">
+        <mat-icon>error_outline</mat-icon>
+        <span>{{ errorMessage }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Orders Table -->
+  <div *ngIf="!isLoading && orders.length > 0" class="table-container">
+    <table mat-table [dataSource]="orders" class="custom-table">
+      <!-- User Column (Admin only) -->
+      <ng-container *ngIf="isAdmin" matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef>Utilisateur</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="cell-user">
+            <mat-icon class="user-icon">person</mat-icon>
+            {{ getUserName(element.userId) }}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Product Column -->
+      <ng-container matColumnDef="product">
+        <th mat-header-cell *matHeaderCellDef>Produit</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="cell-product">
+            <mat-icon class="product-icon">shopping_bag</mat-icon>
+            {{ getProductName(element.productId) }}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantité</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-chip-set>
+            <mat-chip class="quantity-chip">
+              <mat-icon>inventory_2</mat-icon>
+              {{ element.quantity }}
+            </mat-chip>
+          </mat-chip-set>
+        </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Statut</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-chip-set>
+            <mat-chip
+              [class.status-pending]="element.status === 'pending'"
+              [class.status-processing]="element.status === 'processing'"
+              [class.status-shipped]="element.status === 'shipped'"
+              [class.status-cancelled]="element.status === 'cancelled'"
+              class="status-chip">
+              <mat-icon class="status-icon">
+                {{ getStatusIcon(element.status) }}
+              </mat-icon>
+              {{ formatStatus(element.status) }}
+            </mat-chip>
+          </mat-chip-set>
+        </td>
+      </ng-container>
+
+      <!-- Actions Column (Admin only) -->
+      <ng-container *ngIf="isAdmin" matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            [routerLink]="['/orders/edit', element.id]"
+            matTooltip="Éditer la commande"
+            class="action-btn edit-btn">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            (click)="onQuickUpdate(element)"
+            matTooltip="Mise à jour rapide"
+            class="action-btn update-btn">
+            <mat-icon>cached</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            (click)="onDelete(element.id)"
+            matTooltip="Supprimer la commande"
+            class="action-btn delete-btn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Header Row -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+      <!-- Data Rows -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="data-row"></tr>
+    </table>
+  </div>
+
+  <!-- Empty State -->
+  <mat-card *ngIf="!isLoading && orders.length === 0" class="empty-state-card">
+    <mat-card-content>
+      <div class="empty-state">
+        <mat-icon class="empty-icon">receipt_long</mat-icon>
+        <h3>{{ isAdmin ? 'Aucune commande' : 'Aucune commande personnelle' }}</h3>
+        <p>{{ isAdmin ? 'Commencez par ajouter une nouvelle commande' : 'Vous n\'avez pas encore passé de commande' }}</p>
+        <button mat-raised-button color="primary" routerLink="/orders/new">
+          <mat-icon>add_shopping_cart</mat-icon>
+          Créer une commande
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

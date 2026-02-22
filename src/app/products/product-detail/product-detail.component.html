@@ -1,0 +1,32 @@
+<section class="detail-container">
+  <h2>Product Details</h2>
+
+  <p *ngIf="isLoading">Loading...</p>
+  <p *ngIf="errorMessage" class="error-banner">{{ errorMessage }}</p>
+
+  <div *ngIf="!isLoading && product" class="detail-card">
+    <h3>{{ product.name }}</h3>
+
+    <div class="detail-row">
+      <span class="label">ID</span>
+      <span>#{{ product.id }}</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="label">Price</span>
+      <span>${{ product.price | number: '1.2-2' }}</span>
+    </div>
+
+    <div class="detail-row description-row">
+      <span class="label">Description</span>
+      <p>{{ product.description }}</p>
+    </div>
+
+    <button type="button" (click)="goBack()">Back to Products</button>
+  </div>
+
+  <div *ngIf="!isLoading && !product && !errorMessage" class="empty-state">
+    <p>No product found.</p>
+    <button type="button" (click)="goBack()">Back to Products</button>
+  </div>
+</section>

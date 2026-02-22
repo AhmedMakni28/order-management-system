@@ -1,0 +1,40 @@
+<aside class="sidebar" [class.expanded]="isExpanded" [class.collapsed]="!isExpanded">
+  <button class="toggle-btn" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+    <mat-icon>{{ isExpanded ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+  </button>
+
+  <nav *ngIf="isExpanded && currentUser" class="expanded-nav">
+    <div class="user-card">
+      <p class="user-label">LOGGED IN AS</p>
+      <p class="user-name">{{ currentUser.name }}</p>
+      <p class="user-email">{{ currentUser.email }}</p>
+    </div>
+
+    <div class="section-title">Navigation</div>
+    <div class="nav-list">
+      <button (click)="navigate('/products')">
+        <mat-icon>inventory_2</mat-icon>
+        <span>Products</span>
+      </button>
+      <button (click)="navigate('/orders')">
+        <mat-icon>receipt_long</mat-icon>
+        <span>Orders</span>
+      </button>
+      <button *ngIf="isAdmin()" (click)="navigate('/users')">
+        <mat-icon>group</mat-icon>
+        <span>Users</span>
+      </button>
+      <button *ngIf="isAdmin()" (click)="navigate('/dashboard')">
+        <mat-icon>query_stats</mat-icon>
+        <span>Dashboard</span>
+      </button>
+    </div>
+  </nav>
+
+  <div *ngIf="!isExpanded" class="collapsed-nav">
+    <button (click)="navigate('/products')" title="Products"><mat-icon>inventory_2</mat-icon></button>
+    <button (click)="navigate('/orders')" title="Orders"><mat-icon>receipt_long</mat-icon></button>
+    <button *ngIf="isAdmin()" (click)="navigate('/users')" title="Users"><mat-icon>group</mat-icon></button>
+    <button *ngIf="isAdmin()" (click)="navigate('/dashboard')" title="Dashboard"><mat-icon>query_stats</mat-icon></button>
+  </div>
+</aside>

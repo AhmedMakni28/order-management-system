@@ -1,0 +1,86 @@
+<div class="form-container">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="card-icon">{{ isEditMode ? 'edit' : 'add_circle' }}</mat-icon>
+        {{ isEditMode ? 'Modifier Un Utilisateur' : 'Créer Un Utilisateur' }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="isLoading" class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Chargement...</p>
+      </div>
+
+      <form *ngIf="!isLoading" [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+        <!-- Name Field -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Nom complet</mat-label>
+          <input matInput formControlName="name" placeholder="Ex: Jean Dupont" />
+          <mat-icon matPrefix>person</mat-icon>
+          <mat-error *ngIf="userForm.get('name')?.hasError('required')">
+            Le nom est obligatoire
+          </mat-error>
+          <mat-error *ngIf="userForm.get('name')?.hasError('minlength')">
+            Minimum 2 caractères
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Email Field -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="exemple@email.com" />
+          <mat-icon matPrefix>email</mat-icon>
+          <mat-error *ngIf="userForm.get('email')?.hasError('required')">
+            L'email est obligatoire
+          </mat-error>
+          <mat-error *ngIf="userForm.get('email')?.hasError('email')">
+            Email invalide
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Password Field -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="••••••••" />
+          <mat-icon matPrefix>lock</mat-icon>
+          <mat-error *ngIf="userForm.get('password')?.hasError('required')">
+            Le mot de passe est obligatoire
+          </mat-error>
+          <mat-error *ngIf="userForm.get('password')?.hasError('minlength')">
+            Minimum 3 caractères
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Role Field -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Rôle</mat-label>
+          <mat-select formControlName="role">
+            <mat-option value="user">👤 Utilisateur</mat-option>
+            <mat-option value="admin">👨‍💼 Administrateur</mat-option>
+          </mat-select>
+          <mat-icon matPrefix>security</mat-icon>
+        </mat-form-field>
+
+        <!-- Error Message -->
+        <mat-error *ngIf="errorMessage" class="error-banner">
+          <mat-icon>error</mat-icon>
+          {{ errorMessage }}
+        </mat-error>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit">
+            <mat-icon>{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+            {{ isEditMode ? 'Mettre à jour' : 'Créer' }}
+          </button>
+          <button mat-stroked-button type="button" routerLink="/users">
+            <mat-icon>close</mat-icon>
+            Annuler
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,93 @@
+.navbar-logo {
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.2px;
+}
+
+.navbar-logo:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  border-radius: 999px;
+}
+
+.navbar-links a.active::after {
+  transform: scaleX(1);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(3px);
+}
+
+::ng-deep .mat-mdc-toolbar {
+  height: auto !important;
+  min-height: 64px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+  background: linear-gradient(110deg, #2d3fa1 0%, #3148b2 55%, #2a3797 100%) !important;
+}
+
+:host ::ng-deep .navbar-links .mat-mdc-button-base,
+:host ::ng-deep .navbar-right .mat-mdc-button-base,
+:host ::ng-deep a[mat-button].mat-mdc-button-base {
+  color: white !important;
+}
+
+::ng-deep .mat-mdc-chip.mat-warn {
+  background-color: #ff6b6b !important;
+  color: white !important;
+  font-size: 11px;
+  height: 24px;
+  padding: 0 8px;
+}

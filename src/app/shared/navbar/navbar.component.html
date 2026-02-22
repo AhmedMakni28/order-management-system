@@ -1,0 +1,45 @@
+<mat-toolbar color="primary">
+  <span class="navbar-logo" routerLink="/" routerLinkActive="active">
+    <mat-icon>inventory_2</mat-icon>
+    <span>Order Management</span>
+  </span>
+  <span class="spacer"></span>
+
+  <nav class="navbar-links" *ngIf="currentUser">
+    <a mat-button routerLink="/products" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <mat-icon>shopping_bag</mat-icon>
+      Products
+    </a>
+    <a mat-button routerLink="/orders" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <mat-icon>receipt</mat-icon>
+      Orders
+    </a>
+    <a *ngIf="isAdmin()" mat-button routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <mat-icon>dashboard</mat-icon>
+      Dashboard
+    </a>
+    <a *ngIf="isAdmin()" mat-button routerLink="/users" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <mat-icon>people</mat-icon>
+      Users
+    </a>
+  </nav>
+
+  <div class="navbar-right" *ngIf="currentUser">
+    <span class="user-info">
+      <mat-icon>person</mat-icon>
+      {{ currentUser.name }}
+      <mat-chip *ngIf="isAdmin()" color="warn" selected>Admin</mat-chip>
+    </span>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  <a *ngIf="!currentUser" mat-button routerLink="/auth/login" routerLinkActive="active">Login</a>
+</mat-toolbar>

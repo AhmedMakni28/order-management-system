@@ -1,1 +1,77 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Angular Material Theme */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Material Icons */
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --app-bg: #f3f6ff;
+  --app-surface: #ffffff;
+  --app-text: #172033;
+  --app-muted: #64748b;
+  --app-border: #dce4f5;
+  --app-primary: #3148b2;
+}
+
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  background:
+    radial-gradient(900px 420px at -10% -10%, rgba(49, 72, 178, 0.16), transparent 60%),
+    radial-gradient(760px 380px at 110% -10%, rgba(14, 165, 233, 0.12), transparent 58%),
+    var(--app-bg);
+  color: var(--app-text);
+  height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
+button {
+  font-weight: 500;
+}
+
+main {
+  background-color: var(--app-bg);
+}
+
+mat-card,
+.mat-mdc-card {
+  border-radius: 12px;
+  border: 1px solid var(--app-border);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-button-base {
+  border-radius: 8px;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.mat-mdc-raised-button:hover,
+.mat-mdc-unelevated-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(25, 40, 90, 0.18);
+}
+
+.mat-mdc-table {
+  background-color: var(--app-surface);
+}
+
+/* Material Dialog */
+.mat-mdc-dialog-container {
+  border-radius: 8px;
+}
